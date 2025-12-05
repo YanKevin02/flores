@@ -20,7 +20,7 @@
       -ms-user-select: none;
       -moz-user-select: none;
       -webkit-user-select: none;
-      
+      -o-user-select: none;
     }
 
     body {
@@ -167,6 +167,13 @@
         img.style.transform = `rotate(${Math.random() * 360}deg)`;
         img.style.filter = 'drop-shadow(0 2px 16px #fff8)';
         img.style.transition = 'width 0.3s';
+        img.style.pointerEvents = 'none';
+        img.style.userSelect = 'none';
+        img.style.webkitUserSelect = 'none';
+        img.style.msUserSelect = 'none';
+        img.style.mozUserSelect = 'none';
+        img.style.khtmlUserSelect = 'none';
+        img.style.oUserSelect = 'none';
         img.dataset.tipo = 'amarilla';
         contenedor.appendChild(img);
       }
@@ -200,6 +207,13 @@
         img.style.transform = `rotate(${Math.random() * 360}deg)`;
         img.style.filter = 'drop-shadow(0 2px 16px #fff8)';
         img.style.transition = 'width 0.3s';
+        img.style.pointerEvents = 'none';
+        img.style.userSelect = 'none';
+        img.style.webkitUserSelect = 'none';
+        img.style.msUserSelect = 'none';
+        img.style.mozUserSelect = 'none';
+        img.style.khtmlUserSelect = 'none';
+        img.style.oUserSelect = 'none';
         img.dataset.tipo = 'roja';
         contenedor.appendChild(img);
       }
