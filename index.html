@@ -83,6 +83,8 @@
 
     const audio = new Audio('./Lisboa - ANAVITÓRIA.mp3');
     let isPlaying = false;
+    audio.loop = true;
+    audio.volume = 0.3;
 
     window.addEventListener('mousemove', function autoPlayOnce() {
       if (!isPlaying) {
