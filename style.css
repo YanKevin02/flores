@@ -14,6 +14,8 @@ user-select: none;
 -moz-user-select: none;
 -webkit-user-select: none;
 -o-user-select: none;
+-ms-touch-select: none;
+-webkit-touch-select: none;
 font-family: 'Roboto', sans-serif;
 }
 
