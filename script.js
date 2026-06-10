@@ -71,6 +71,16 @@ await tocarMusica();
 atualizarTelaInicial();
 });
 
+telaInicialFullscreen.addEventListener('click', async (event) => {
+if (event.target === btnEntrarFullscreen) {
+   return;
+}
+
+await solicitarTelaCheia();
+await tocarMusica();
+atualizarTelaInicial();
+});
+
 document.addEventListener('fullscreenchange', atualizarTelaInicial);
 
 window.addEventListener('load', () => {
