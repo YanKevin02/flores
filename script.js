@@ -67,6 +67,7 @@ if (document.fullscreenElement) {
 btnMusica.addEventListener('click', alternarMusica);
 btnEntrarFullscreen.addEventListener('click', async () => {
 await solicitarTelaCheia();
+await tocarMusica();
 atualizarTelaInicial();
 });
 
@@ -76,14 +77,6 @@ window.addEventListener('load', () => {
 atualizarBotaoMusica();
 atualizarTelaInicial();
 });
-
-window.addEventListener('pointerdown', () => {
-solicitarTelaCheia();
-atualizarTelaInicial();
-if (!isPlaying) {
-   tocarMusica();
-}
-}, { once: true });
 
 // Genera 18 imágenes PNG en posiciones aleatorias
 const cantidad = 10;
