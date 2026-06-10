@@ -1,14 +1,89 @@
 const audio = new Audio('./Lisboa - ANAVITÓRIA.mp3');
 let isPlaying = false;
+let fullscreenSolicitado = false;
 audio.loop = true;
 audio.volume = 0.3;
 
-window.addEventListener('mousemove', function autoPlayOnce() {
-if (!isPlaying) {
-   audio.play().then(() => {
-   }).catch(e => console.log("Reprodução automática bloqueada pelo navegador."));
+const btnMusica = document.getElementById('btn-musica');
+const telaInicialFullscreen = document.getElementById('tela-inicial-fullscreen');
+const btnEntrarFullscreen = document.getElementById('btn-entrar-fullscreen');
+let telaInicialAtiva = true;
+
+function atualizarBotaoMusica() {
+btnMusica.textContent = isPlaying ? '⏸' : '▶';
+btnMusica.setAttribute('aria-label', isPlaying ? 'Pausar música' : 'Tocar música');
 }
+
+async function tocarMusica() {
+try {
+   await audio.play();
+   isPlaying = true;
+   atualizarBotaoMusica();
+} catch (e) {
+   console.log('Reprodução bloqueada pelo navegador.');
+}
+}
+
+function pausarMusica() {
+audio.pause();
+isPlaying = false;
+atualizarBotaoMusica();
+}
+
+function alternarMusica() {
+if (isPlaying) {
+   pausarMusica();
+} else {
+   tocarMusica();
+}
+}
+
+async function solicitarTelaCheia() {
+if (document.fullscreenElement || fullscreenSolicitado) {
+   return;
+}
+fullscreenSolicitado = true;
+try {
+   await document.documentElement.requestFullscreen();
+} catch (e) {
+   fullscreenSolicitado = false;
+}
+}
+
+function atualizarTelaInicial() {
+if (!telaInicialAtiva) {
+   telaInicialFullscreen.classList.add('is-hidden');
+   return;
+}
+
+if (document.fullscreenElement) {
+   telaInicialFullscreen.classList.add('is-hidden');
+   telaInicialAtiva = false;
+} else {
+   telaInicialFullscreen.classList.remove('is-hidden');
+}
+}
+
+btnMusica.addEventListener('click', alternarMusica);
+btnEntrarFullscreen.addEventListener('click', async () => {
+await solicitarTelaCheia();
+atualizarTelaInicial();
 });
+
+document.addEventListener('fullscreenchange', atualizarTelaInicial);
+
+window.addEventListener('load', () => {
+atualizarBotaoMusica();
+atualizarTelaInicial();
+});
+
+window.addEventListener('pointerdown', () => {
+solicitarTelaCheia();
+atualizarTelaInicial();
+if (!isPlaying) {
+   tocarMusica();
+}
+}, { once: true });
 
 // Genera 18 imágenes PNG en posiciones aleatorias
 const cantidad = 10;
