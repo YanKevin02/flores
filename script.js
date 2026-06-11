@@ -345,11 +345,11 @@ for (let i = 0; i < cantidad; i++) {
       { transform: 'scale(1)', opacity: 0.85 },
       { transform: `translate(${Math.cos(ang) * dist}px,${Math.sin(ang) * dist}px) scale(0.2)`, opacity: 0 },
    ], {
-      duration: 300 + Math.random() * 120,
+      duration: 500 + Math.random() * 120,
       easing: 'ease-out',
       fill: 'forwards'
    });
-   setTimeout(() => part.remove(), 500);
+   setTimeout(() => part.remove(), 800);
 }
 }
 
