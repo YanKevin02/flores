@@ -129,7 +129,7 @@ imgs.forEach((img, idx) => {
    });
    img.onclick = function (e) {
       e.stopPropagation();
-      mostrarAnimacion3D(img, idx, img.src === pngUrl1 ? 'yellow' : 'red');
+      mostrarAnimacion3D(img, idx, img.dataset.tipo === 'amarilla' ? 'yellow' : 'white');
    };
    img.style.cursor = 'pointer';
 });
@@ -277,13 +277,13 @@ script.onload = function () {
    }
    // Cinemática: cámara se acerca, pétalos se abren, giro y brillo
    let frame = 0;
-   let totalFrames = 30;
+   let totalFrames = 60;
    function animate() {
       frame++;
       // Cámara se acerca y gira
-      if (frame <= 15) {
-      camera.position.z = 14 - (frame / 15) * 8;
-      camera.position.x = Math.sin(frame / 15 * Math.PI) * 2.5;
+      if (frame <= 30) {
+      camera.position.z = 14 - (frame / 30) * 8;
+      camera.position.x = Math.sin(frame / 30 * Math.PI) * 2.5;
       camera.lookAt(0, 0, 0);
       } else {
       camera.position.z = 6;
@@ -308,7 +308,7 @@ script.onload = function () {
          threeModal.innerHTML = '';
          lanzarParticulas(img, color);
          mostrarModalRomantico(idx);
-      }, 120);
+      }, 180);
       }
    }
    animate();
@@ -345,11 +345,11 @@ for (let i = 0; i < cantidad; i++) {
       { transform: 'scale(1)', opacity: 0.85 },
       { transform: `translate(${Math.cos(ang) * dist}px,${Math.sin(ang) * dist}px) scale(0.2)`, opacity: 0 },
    ], {
-      duration: 800 + Math.random() * 120,
+      duration: 1100 + Math.random() * 250,
       easing: 'ease-out',
       fill: 'forwards'
    });
-   setTimeout(() => part.remove(), 1200);
+   setTimeout(() => part.remove(), 1600);
 }
 }
 
