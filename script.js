@@ -90,8 +90,10 @@ atualizarTelaInicial();
 
 // Genera 18 imágenes PNG en posiciones aleatorias
 const cantidad = 10;
-const pngUrl1 = 'https://i.postimg.cc/1znkzM1N/d41ef946c455e1a52cc09145cae1e8c5-1.png';
-const pngUrl2 = 'https://i.postimg.cc/W1LjxhFv/de2e32da1ca2eed1ce61afd9e86056d3.png';
+//const pngUrl1 = 'https://i.postimg.cc/1znkzM1N/d41ef946c455e1a52cc09145cae1e8c5-1.png';
+//const pngUrl2 = 'https://i.postimg.cc/W1LjxhFv/de2e32da1ca2eed1ce61afd9e86056d3.png';
+const pngUrl1 = '/flores/girassol.png';
+const pngUrl2 = '/flores/lírio.png';
 const contenedor = document.getElementById('png-regados');
 contenedor.style.position = 'fixed';
 contenedor.style.top = '0';
@@ -196,7 +198,7 @@ for (let i = 0; i < cantidad; i++) {
    posiciones.push({ top: topPx, left: leftPx });
    const img = document.createElement('img');
    img.src = pngUrl2;
-   img.alt = 'Flor de Rosa';
+   img.alt = 'Flor de Lírio';
    img.style.position = 'absolute';
    img.style.width = ancho + 'px';
    img.style.opacity = 0.85 + Math.random() * 0.15;
@@ -211,7 +213,7 @@ for (let i = 0; i < cantidad; i++) {
    img.style.mozUserSelect = 'none';
    img.style.khtmlUserSelect = 'none';
    img.style.oUserSelect = 'none';
-   img.dataset.tipo = 'roja';
+   img.dataset.tipo = 'branca';
    contenedor.appendChild(img);
 }
 animarFlotantes();
@@ -259,8 +261,8 @@ script.onload = function () {
    dirLight.position.set(2, 4, 5);
    scene.add(dirLight);
    // Flor 3D cinematográfica
-   const material = new THREE.MeshPhongMaterial({ color: color === 'yellow' ? 0xffd700 : 0xd60000, shininess: 80 });
-   const petalMaterial = new THREE.MeshPhongMaterial({ color: color === 'yellow' ? 0xfff68f : 0xff6f6f, shininess: 60 });
+   const material = new THREE.MeshPhongMaterial({ color: color === 'yellow' ? 0xffd700 : 0xffffff, shininess: 80 });
+   const petalMaterial = new THREE.MeshPhongMaterial({ color: color === 'yellow' ? 0xfff68f : 0xffffff, shininess: 60 });
    const center = new THREE.Mesh(new THREE.SphereGeometry(0.7, 32, 32), material);
    scene.add(center);
    const petals = [];
@@ -275,13 +277,13 @@ script.onload = function () {
    }
    // Cinemática: cámara se acerca, pétalos se abren, giro y brillo
    let frame = 0;
-   let totalFrames = 80;
+   let totalFrames = 30;
    function animate() {
       frame++;
       // Cámara se acerca y gira
-      if (frame <= 40) {
-      camera.position.z = 14 - (frame / 40) * 8;
-      camera.position.x = Math.sin(frame / 40 * Math.PI) * 2.5;
+      if (frame <= 15) {
+      camera.position.z = 14 - (frame / 15) * 8;
+      camera.position.x = Math.sin(frame / 15 * Math.PI) * 2.5;
       camera.lookAt(0, 0, 0);
       } else {
       camera.position.z = 6;
@@ -306,7 +308,7 @@ script.onload = function () {
          threeModal.innerHTML = '';
          lanzarParticulas(img, color);
          mostrarModalRomantico(idx);
-      }, 500);
+      }, 120);
       }
    }
    animate();
@@ -331,7 +333,7 @@ for (let i = 0; i < cantidad; i++) {
    part.style.width = '12px';
    part.style.height = '12px';
    part.style.borderRadius = '50%';
-   part.style.background = color === 'yellow' ? '#ffd700' : '#d60000';
+   part.style.background = color === 'yellow' ? '#ffd700' : '#ffffff';
    part.style.boxShadow = '0 0 12px #fff8';
    part.style.opacity = '0.85';
    part.style.zIndex = '120';
@@ -343,11 +345,11 @@ for (let i = 0; i < cantidad; i++) {
       { transform: 'scale(1)', opacity: 0.85 },
       { transform: `translate(${Math.cos(ang) * dist}px,${Math.sin(ang) * dist}px) scale(0.2)`, opacity: 0 },
    ], {
-      duration: 900 + Math.random() * 400,
+      duration: 300 + Math.random() * 120,
       easing: 'ease-out',
       fill: 'forwards'
    });
-   setTimeout(() => part.remove(), 1200);
+   setTimeout(() => part.remove(), 500);
 }
 }
 
